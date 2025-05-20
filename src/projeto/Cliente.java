@@ -1,4 +1,4 @@
-package socket.projeto;
+package projeto;
 
 import java.io.*;
 import java.net.*;
