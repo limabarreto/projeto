@@ -6,7 +6,6 @@ Uma aplicação de bate-papo simples entre cliente e servidor, utilizando socket
 
 - Java (JDK 8+)
 - Programação com Sockets TCP
-- Threads para comunicação paralela
 - Terminal (linha de comando)
 - Máquina Virtual (Linux) para execução do servidor
 
