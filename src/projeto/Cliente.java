@@ -16,7 +16,10 @@ public class Cliente {
             int porta = Integer.parseInt(scanner.nextLine());
 
             try (
-                    Socket cliente = new Socket(ip, porta); BufferedReader entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream())); PrintWriter saida = new PrintWriter(cliente.getOutputStream(), true); FileWriter logConversa = new FileWriter("conversa.txt", true)) {
+                    Socket cliente = new Socket(ip, porta); 
+                    BufferedReader entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream())); 
+                    PrintWriter saida = new PrintWriter(cliente.getOutputStream(), true); 
+                    FileWriter logConversa = new FileWriter("conversa.txt", true)) {
                 System.out.println("Conectado ao servidor em " + ip + ":" + porta);
                 Scanner teclado = new Scanner(System.in);
                 String mensagem;
