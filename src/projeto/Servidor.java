@@ -1,8 +1,8 @@
 package projeto; 
 
-import java.io.*; // Importa classes para operações de entrada e saída (leitura e escrita)
-import java.net.*; // Importa classes para operações de rede (sockets, IP, etc.)
-import java.util.Scanner; // Importa a classe Scanner para leitura de dados do teclado
+import java.io.*; // p operações de entrada e saída (leitura e escrita)
+import java.net.*; // p operações de rede (sockets, IP, etc.)
+import java.util.Scanner; // importa a classe Scanner p leitura de dados do teclado
 
 public class Servidor { 
     public static void main(String[] args) { 
@@ -15,32 +15,32 @@ public class Servidor {
             System.out.print("Digite a porta para escutar: ");
             int porta = Integer.parseInt(scanner.nextLine()); 
 
-            // Cria um socket de servidor e associa (bind) ao IP e porta informados
+            // cria um socket de servidor e associa (bind) ao IP e porta informados
             ServerSocket servidor = new ServerSocket();
             servidor.bind(new InetSocketAddress(ip, porta));
 
             System.out.println("Servidor escutando em " + ip + ":" + porta);
 
-            // Aguarda a conexão de um cliente
+            // aguarda a conexão de um cliente
             Socket cliente = servidor.accept();
             System.out.println("Cliente conectado de: " + cliente.getInetAddress());
 
-            // Cria um leitor de mensagens recebidas do cliente
+            // cria um leitor de mensagens recebidas do cliente
             BufferedReader entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
 
-            // Cria um escritor de mensagens que serão enviadas para o cliente
+            // cria um escritor de mensagens que serão enviadas p o cliente
             PrintWriter saida = new PrintWriter(cliente.getOutputStream(), true);
 
-            // Cria um gravador para salvar a conversa em um arquivo texto
+            // cria um gravador p salvar a conversa em um arquivo texto
             BufferedWriter arquivo = new BufferedWriter(new FileWriter("conversa.txt", true));
 
-            // Cria um scanner para ler mensagens digitadas pelo servidor
+            // cria um scanner p ler mensagens digitadas pelo servidor
             Scanner teclado = new Scanner(System.in);
             String mensagem; // armazena as mensagens recebidas
 
-            // Loop principal de comunicação c o cliente
+            // loop principal de comunicação c o cliente
             while (true) {
-                mensagem = entrada.readLine(); // Lê a próxima mensagem enviada pelo cliente
+                mensagem = entrada.readLine(); // lê a próxima mensagem enviada pelo cliente
 
                 
                 if (mensagem == null || mensagem.equalsIgnoreCase("exit")) {
@@ -53,17 +53,17 @@ public class Servidor {
                 arquivo.write("Cliente: " + mensagem);
                 arquivo.newLine(); 
 
-                // Solicita a resposta do servidor
+                // solicita a resposta do servidor
                 System.out.print("Servidor: ");
-                String resposta = teclado.nextLine(); // Lê a resposta digitada
+                String resposta = teclado.nextLine(); // lê a resposta digitada
 
-                // Envia a resposta ao cliente e grava no arquivo
+                // envia a resposta ao cliente e grava no arquivo
                 saida.println(resposta);
                 arquivo.write("Servidor: " + resposta);
                 arquivo.newLine(); 
             }
 
-            // Finaliza os recursos abertos
+            // finaliza os recursos abertos
             arquivo.close();
             servidor.close();
             cliente.close();
